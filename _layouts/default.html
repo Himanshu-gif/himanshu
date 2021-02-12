@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dfault.css">
+  {% if page.title != null %}
+  <title>{{ page.title }}</title>
+  {% endif %}
+</head>
+
+<body>
+  <input id="hamburger" class="hamburger" type="checkbox" />
+  <label for="hamburger" class="hamburger">
+    <i></i>
+    <text>
+      <close>close</close>
+      <open>Contents</open>
+    </text>
+  </label>
+  <nav class="primnav" id='hsb'>
+    <ul id='hsb'>
+    {% for items in menu %}
+      <li>
+        <a href="{{ items.LINK }}"><img src="{{ items.ICON }}" class="icon"/>{{ items.TEXT }}</a>
+        {% if items.CHILD != null %}
+          {% for baby in items.CHILD %}
+            <ul class="secnav">
+              <li><a href="{{ baby.LINK }}">{{ baby.TEXT }}</a></li>
+            </ul>
+          {% endfor %}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  </nav>
+  <content>
+    <br>
+    <div class="container-lg px-3 my-5 markdown-body">
+      {{ content }}
+    </div>
+  </content>
+</body>
+
+</html>
